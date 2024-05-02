@@ -12,7 +12,11 @@
 		"vscode": {
 			"extensions": [
 				"ms-azuretools.vscode-docker",
-				"Angular.ng-template"
+				"Angular.ng-template",
+				"dbaeumer.vscode-eslint",
+				"Mikael.Angular-BeastCode",
+				"cyrilletuzi.angular-schematics",
+				"yuanhjty.code-template-tool"
 			]
 		}
 	}
