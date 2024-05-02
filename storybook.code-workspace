@@ -4,6 +4,10 @@
 			"path": "./",
 			"name": "Root"
 		},
+		{
+			"path": "./project",
+			"name": "Storybook"
+		},
 	],
 	"settings": {}
 }
