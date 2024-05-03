@@ -16,7 +16,9 @@
 				"dbaeumer.vscode-eslint",
 				"Mikael.Angular-BeastCode",
 				"cyrilletuzi.angular-schematics",
-				"yuanhjty.code-template-tool"
+				"yuanhjty.code-template-tool",
+				"mhutchie.git-graph",
+				"ms-vscode-remote.remote-containers"
 			]
 		}
 	}
