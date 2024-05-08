@@ -35,6 +35,15 @@ export const Primary: StrokedButton = {
   },
 };
 
+export const PrimaryWithcon: StrokedButton = {
+  args: {
+    label: 'Primary',
+    icon: 'home',
+    tooltip: "Primary"
+  },
+};
+
+
 export const Accent: StrokedButton = {
   args: {
     color: 'accent',

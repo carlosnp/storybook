@@ -87,7 +87,7 @@
         },
         {
             "name": "ButtonBaseComponent",
-            "id": "component-ButtonBaseComponent-d2364f2bb94c4c03060d5f6653902d0a72ca6c10dcb2a3c3446c56d4e4f8e5dd7009b6322ba839aeb7a79ed8aa89ebdd39c05483bfb4f4e7db048aeca5a90b85",
+            "id": "component-ButtonBaseComponent-d613e851dd31bd85264b6a73ca9f17fdea786abd136f57eb683ac05c6bd6fdd26543a79e8ef9af0dd58c2e98618376293d5aded08fb76723662ec500925b0fe9",
             "file": "src/shared/button-base/button-base.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -110,8 +110,18 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nColor\n",
                     "description": "<p>Color</p>\n",
-                    "line": 26,
+                    "line": 29,
                     "type": "\"primary\" | \"accent\" | \"warn\"",
+                    "decorators": []
+                },
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nNombre del icono de material.\n\nLista de iconos de material\nhttps://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/\n",
+                    "description": "<p>Nombre del icono de material.</p>\n<p>Lista de iconos de material\n<a href=\"https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/\">https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/</a></p>\n",
+                    "line": 37,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -121,7 +131,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nTitulo del boton\n",
                     "description": "<p>Titulo del boton</p>\n",
-                    "line": 16,
+                    "line": 19,
                     "type": "string",
                     "decorators": []
                 },
@@ -132,7 +142,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nTexto de ayuda\n",
                     "description": "<p>Texto de ayuda</p>\n",
-                    "line": 21,
+                    "line": 24,
                     "type": "string",
                     "decorators": []
                 }
@@ -145,7 +155,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nClick en el boton\n",
                     "description": "<p>Click en el boton</p>\n",
-                    "line": 31,
+                    "line": 42,
                     "type": "EventEmitter"
                 }
             ],
@@ -158,24 +168,32 @@
             "standalone": true,
             "imports": [
                 {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
                     "name": "MatButtonModule",
                     "type": "module"
                 },
                 {
                     "name": "MatTooltipModule",
                     "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatTooltipModule } from '@angular/material/tooltip';\n@Component({\n  selector: 'app-button-base',\n  templateUrl: './button-base.component.html',\n  styleUrl: './button-base.component.scss',\n  imports: [ MatButtonModule, MatTooltipModule],\n  standalone: true,\n})\nexport class ButtonBaseComponent {\n  /**\n   * Titulo del boton\n   */\n  @Input()\n  label: string = 'LABEL';\n  /**\n   * Texto de ayuda\n   */\n  @Input()\n  tooltip: string = '';\n  /**\n   * Color\n   */\n  @Input()\n  color: 'primary' | 'accent' | 'warn' = 'primary';\n  /**\n   * Click en el boton\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatTooltipModule } from '@angular/material/tooltip';\nimport { MatIconModule } from '@angular/material/icon';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'app-button-base',\n  templateUrl: './button-base.component.html',\n  styleUrl: './button-base.component.scss',\n  imports: [ CommonModule, MatButtonModule, MatTooltipModule, MatIconModule],\n  standalone: true,\n})\nexport class ButtonBaseComponent {\n  /**\n   * Titulo del boton\n   */\n  @Input()\n  label: string = 'LABEL';\n  /**\n   * Texto de ayuda\n   */\n  @Input()\n  tooltip: string = '';\n  /**\n   * Color\n   */\n  @Input()\n  color: 'primary' | 'accent' | 'warn' = 'primary';\n  /**\n   * Nombre del icono de material.\n   *\n   * Lista de iconos de material\n   * https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/\n   */\n  @Input()\n  icon!: string;\n  /**\n   * Click en el boton\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n}\n",
             "styleUrl": "./button-base.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "  <button \n    mat-stroked-button\n    [color]=\"color\"\n    [matTooltip]=\"tooltip\"\n    (click)=\"onClick.emit($event)\"\n  >{{label}}</button>\n"
+            "templateData": "<button mat-stroked-button [color]=\"color\" [matTooltip]=\"tooltip\" (click)=\"onClick.emit($event)\">\n  <mat-icon *ngIf=\"icon\">{{icon}}</mat-icon>\n  <span *ngIf=\"label\">{{label | uppercase}}</span>\n</button>"
         },
         {
             "name": "ButtonComponent",
@@ -398,7 +416,7 @@
         },
         {
             "name": "InitComponent",
-            "id": "component-InitComponent-97d67992aba85ff7011a01770a1185ad01e12663e7f1ae7735a63795dd301f87d6c5abcb6208dc917fe64d829d5141c2b6b050bb48936b7a5dfbac9058d7c041",
+            "id": "component-InitComponent-bbb3086d5f0a3e4fbaf679b5b6a1a31370a45787166784a78c126d3b1a25ce8599f451be0644b31a6d095f2d9dc4e34b06bf32b2bb913a722b2cffd8354e5eb6",
             "file": "src/app/home/pages/init/init.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -422,17 +440,22 @@
             "hostBindings": [],
             "hostListeners": [],
             "standalone": true,
-            "imports": [],
+            "imports": [
+                {
+                    "name": "ButtonBaseComponent",
+                    "type": "component"
+                }
+            ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-init',\n  standalone: true,\n  imports: [],\n  templateUrl: './init.component.html',\n  styleUrl: './init.component.scss'\n})\nexport class InitComponent {\n\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonBaseComponent } from '../../../../shared';\n\n@Component({\n  selector: 'app-init',\n  standalone: true,\n  imports: [ButtonBaseComponent],\n  templateUrl: './init.component.html',\n  styleUrl: './init.component.scss'\n})\nexport class InitComponent {\n\n}\n",
             "styleUrl": "./init.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<h1>hola mundo works!</h1>\n"
+            "templateData": "<h1>hola mundo works!</h1>\n\n<app-button-base title=\"pedro pedro pedro\"></app-button-base>\n<app-button-base icon=\"home\"></app-button-base>"
         },
         {
             "name": "PageComponent",
@@ -742,7 +765,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 14,
+        "count": 15,
         "status": "low",
         "files": [
             {
@@ -808,8 +831,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonBaseComponent",
-                "coveragePercent": 80,
-                "coverageCount": "4/5",
+                "coveragePercent": 83,
+                "coverageCount": "5/6",
                 "status": "very-good"
             },
             {
